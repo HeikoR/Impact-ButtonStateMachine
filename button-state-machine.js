@@ -11,7 +11,6 @@ ig.module (
 	'plugins.button-state-machine'
 )
 .requires (
-	//'impact.impact',
 	'impact.entity'
 )
 .defines( function () {
@@ -39,20 +38,20 @@ ig.module (
 	// =================================================================================================================
 	// ButtonStateMachine
 	//
-	// - create instance of ButtonStateMachine in your button class
-	// - set the following button state input functions in your class (if required, else keep defaults)
+	// - create instance of ButtonStateMachine in your button entity
+	// - set the following button state input functions in your button entity (if required, else keep defaults)
 	//		isMouseInside	- return true if mouse is inside of button clickable area, else false
 	//		isEnabled		- return enabled state of your button, or keep default if your button can't be disabled
 	//		isMouseDown		- return true if mouse.STATE is down, else false (note mouse state should return down continuosly
 	//					  	  until button up, not just once on transition)
 	// - set the following state transition handlers - if required
-	//	 Note: these events on get called ONCE on state transition.
+	//	 Note: these events only get called ONCE on state transition.
 	//		startHover 		- notifies when mouse over clickable area
 	//		endHover 		- notifies when mouse leaves clickable area
 	//		startClick 		- notifies when mouse button down on clickable area
 	//		endClick		- notifies when mouse button up on clickable area
-	//		endClick		- notifies when mouse button up outside of clickable area
-	// - call updateState() in your button class's update handler
+	//		endClickIgnore	- notifies when mouse button up outside of clickable area
+	// - call updateState() in your button entity's update handler
 	
 	ig.ButtonStateMachine = ig.Class.extend({
 		stateTable: null,
@@ -191,8 +190,6 @@ ig.module (
 			ENABLED:			[ig.BUTTONSTATE.OUTSIDE,		'noEvent']
 		}
 	};
-	
-	
 });
 
 
